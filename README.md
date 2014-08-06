@@ -2,7 +2,7 @@
 ##1、[container_of](container_of/)  
 `container_of`是一个宏，定义在[`kernel.h`]中：
 
-```
+```C
 /**
  * container_of - cast a member of a structure out to the containing structure
  * @ptr:	the pointer to the member.结构体的成员变量的指针。
@@ -35,7 +35,7 @@
 + 1)文件rbtree.h是红黑树的定义与实现的文件
 其中节点格式为：
 
-```
+```C++
 typedef int key_t;      //key类型
 typedef int data_t;     //数据类型
 typedef enum color_t{   //rb数color

@@ -1,5 +1,5 @@
 ###Algorithms study
-##1、[container_of](container_of/readme.txt)  
+##1、[container_of](container_of/)  
 `container_of`是一个宏，定义在[`kernel.h`]中：
 
 ```
@@ -27,10 +27,10 @@
     `#define offsetof(type, member) ((size_t) &((type *)0)->member)` //就是求成员变量相对于结构体的偏移量  
   `(char *)__mptr - offsetof(type,member)` 就是把指向该成员变量的指针向前后退该成员变量的偏移量，就可以指向该结构体的起始地址，然后再强制转换一下，就ok了。
   
-##2、[list](list/README.md)
+##2、[list](list/)
 使用container_of实现一个双向循环队列。
 
-##3、[rbtree](rbtree/readme.txt)
+##3、[rbtree](rbtree/)
  红黑树的实现与测试：
 + 1)文件rbtree.h是红黑树的定义与实现的文件
 其中节点格式为：
@@ -66,6 +66,6 @@ static rb_node_t* rb_erase_fixup(rb_node_t *child, rb_node_t *parent, rb_node_t 
 + 2)文件rbtree-test.h是测试程序
 先随即生成100个节点，然后插入并查询，再随即删除30个节点。
 
-##4、[字符串匹配](substring_search/readme.txt)
+##4、[字符串匹配](substring_search/)
 * 蛮力方法 [brute_force.c](substring_search/brute_force.c)
 * kmp算法 [kmpsearch.c](substring_search/kmpsearch.c)

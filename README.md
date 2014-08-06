@@ -35,7 +35,7 @@
 + 1)文件rbtree.h是红黑树的定义与实现的文件
 其中节点格式为：
 
-```C++
+```C
 typedef int key_t;      //key类型
 typedef int data_t;     //数据类型
 typedef enum color_t{   //rb数color
@@ -50,7 +50,7 @@ typedef struct rb_node_t{
     data_t data;    //value
     color_t color;  //locor
 } rb_node_t;
-文件中包含了函数：
+//文件中包含了函数：
 //函数声明：
 static rb_node_t* rb_new_node(key_t key, data_t data);                 //新建节点
 static rb_node_t* rb_rotate_left(rb_node_t* node, rb_node_t* root);    //左旋

@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
+int cmp_count = 0; 	//纪录比较次数
 //T为文本串，P为模式串
 int bfp(char *T, char *P){
 	int i;		//遍历P串
@@ -11,6 +12,7 @@ int bfp(char *T, char *P){
 	while(j <= tLen - pLen){
 		i = pLen - 1;
 		while(i >= 0 && *(P + i) == *(T + j + i)){
+			cmp_count++;
 			--i;
 		}
 		if(i == -1){
@@ -33,6 +35,7 @@ int main(){
 		printf("not found:%s...\n", pattern);
 		return 0;
 	}
+	printf("compare %d times, ", cmp_count);
 	printf("found starts @[%d]:%s\n", ret, (text+ret));
 	
 	return 0;

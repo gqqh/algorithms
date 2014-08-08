@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 int p[100];	//记录匹配成功的起始位置
+int cmp_count = 0;	//纪录比较次数
 int bfsearch(const char *T, const char *P){	//返回匹配成功的次数
 	if(!T || !P || *T == '\0' || *P == '\0')
 		return -1;
@@ -15,6 +16,7 @@ int bfsearch(const char *T, const char *P){	//返回匹配成功的次数
 		p1 = P;
 		tmp = t1;
 		while(*tmp == *p1 && *tmp != '\0' && *p1 != '\0'){
+			cmp_count++;
 			tmp++;
 			p1++;
 		}
@@ -42,6 +44,7 @@ int main(){
 	}
 	printf("find %d times\n", ret);
 	int i;
+	printf("compare %d times, ", cmp_count);
 	for(i = 0; i < ret; i++){
 		printf("found:%s\n", (text+p[i]));
 	}

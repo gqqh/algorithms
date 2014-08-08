@@ -4,6 +4,7 @@
 #include <string.h>
 
 int next[100];
+int cmp_count = 0;	//统计比较次数
 //T为文本串，P为模式串，返回匹配成功的起始位置在T中的下标，匹配失败时返回-1
 int kmpsearch(char *T, char *P){
 	int i = 0, j = 0;
@@ -12,6 +13,7 @@ int kmpsearch(char *T, char *P){
 
 	while(i < tLen && j < pLen){		//开始匹配
 		if(j == -1 || T[i] == P[j]){	//j==-1表示重新匹配模式串的开始；T[i]==P[j]表示匹配成功，然后匹配下一个
+			cmp_count++;
 			++i;	//i始终向前移动
 			++j;	//如果匹配成功则模式串向前走，否则就是j==-1,往前走一步就是令j=0;
 		}else{
@@ -80,7 +82,7 @@ int main(){
 	int pLen = strlen(pattern);
 	
 	//打印next数组
-	printf("next：");
+	printf("next:");
 	for(; i < pLen; i++){
 		printf("%d ", next[i]);
 	}
@@ -88,6 +90,7 @@ int main(){
 	
 	//打印，文本串从找到的起始位置到结束
 	int ret = kmpsearch(text, pattern);
+	printf("compare %d times, ", ret);
 	if(ret < 0){
 		printf("not found %s...\n", pattern);
 		return 0;

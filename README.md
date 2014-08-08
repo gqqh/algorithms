@@ -66,7 +66,7 @@ static rb_node_t* rb_erase_fixup(rb_node_t *child, rb_node_t *parent, rb_node_t 
 + 2)文件rbtree-test.h是测试程序
 先随即生成100个节点，然后插入并查询，再随即删除30个节点。
 
-##4、[字符串匹配](substring_search/) [*more*](http://www-igm.univ-mlv.fr/~lecroq/string/node1.html)
+##4、[字符串匹配](substring_search/) [*_more_*](http://www-igm.univ-mlv.fr/~lecroq/string/node1.html)
 * 蛮力方法 [brute_force.c](substring_search/brute_force.c) [*参考*](http://www-igm.univ-mlv.fr/~lecroq/string/node3.html#SECTION0030)
 * kmp算法 [kmpsearch.c](substring_search/kmpsearch.c) [*参考*](http://www-igm.univ-mlv.fr/~lecroq/string/node8.html#SECTION0080)
 * sunday算法 [sunday_search.c](substring_search/sunday_search.c)

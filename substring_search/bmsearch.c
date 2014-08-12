@@ -5,6 +5,9 @@
 #define ASIZE 256	//字符个数
 #define PSIZE 100	//模式串大小
 
+int cmp_count = 0;
+int found[100]; 	//记录匹配成功的起始位置
+
 //T为待匹配的文本串，P用来识别的模式串，m为P的长度
 //求坏字符移动数组；
 /*坏字符匹配原则有两条：
@@ -80,7 +83,7 @@ void preBmGs(char *P, int bmGs[]){
 	}
 }
 
-//T为文本串，P为模式串
+//T为文本串，P为模式串，成功返回找到次数，失败返回0
 int bmsearch(char *T, char *P){
 	int i, j, bmGs[PSIZE], bmBc[ASIZE];
 	
@@ -90,27 +93,29 @@ int bmsearch(char *T, char *P){
 
 	int m = strlen(P);
 	int tLen = strlen(T);
-	j = 0; 
+	int ret = 0;
 
-	//j从前往后遍历文本串
-	while(j <= tLen - m){
-		//i从后往前遍历模式串
-		for(i = m - 1; i >= 0; --i){
+	j = 0; 
+	while(j <= tLen - m){				//j从前往后遍历文本串
+		for(i = m - 1; i >= 0; --i){	//i从后往前遍历模式串
+			cmp_count++;
 			if(T[j + i] != P[i]){
 				break;
 			}
 		}
+
 		if(i == -1){	//表示匹配成功
-			return j;
+			found[ret++] = j;
+			j += m;
 		}else{
 			j += (bmGs[i] > (bmBc[P[i]] - m + 1 + i) ? bmGs[i] : (bmBc[P[i]] - m + 1 + i));	
 		}
 	}
 	
-	return -1;
+	return ret;
 }
 int main(){
-	char *text = "hllolleolll hlleolleollellso how are yoheloeolleolllou? fine, thelleolleollllohanks! lleolleolland yhello?";
+	char *text = "hllolleolll hlleolleollellso hhelloow are yoheloeolleolllou? fine, thelleolleollllohanks! lleolleolland yhello?";
 	char *pattern = "hello";
 	//char *text = "hello hello how are yohellu? fine, thellohanks! and yellou?llllllllllllllllllllllllllllll";
 	//char *pattern = "l";
@@ -118,11 +123,16 @@ int main(){
 	
 	//打印，文本串从找到的起始位置到结束
 	int ret = bmsearch(text, pattern);
-	if(ret < 0){
-		printf("not found:%s...\n", pattern);
+	if(ret <= 0){
+		printf("not found %s...\n", pattern);
 		return 0;
 	}
-	printf("found starts @[%d]:%s\n", ret, (text+ret));
+	printf("found %d times.\n", ret);
+	int i;
+	for(i = 0; i< ret; i++){
+		printf("found starts @[%d]:%s\n", found[i], (text+found[i]));
+	}
+	printf("total compare %d times.\n", cmp_count);
 	
 	return 0;
 }

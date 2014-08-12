@@ -70,3 +70,5 @@ static rb_node_t* rb_erase_fixup(rb_node_t *child, rb_node_t *parent, rb_node_t 
 * 蛮力方法 [brute_force.c](substring_search/brute_force.c) [*参考*](http://www-igm.univ-mlv.fr/~lecroq/string/node3.html#SECTION0030)
 * kmp算法 [kmpsearch.c](substring_search/kmpsearch.c) [*参考*](http://www-igm.univ-mlv.fr/~lecroq/string/node8.html#SECTION0080)
 * sunday算法 [sunday_search.c](substring_search/sunday_search.c)
+* bm算法[bmsearch.c](substring_search/bmsearch.c)   
+ [*参考*](http://blog.csdn.net/v_july_v/article/details/7041827)

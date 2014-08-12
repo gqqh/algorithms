@@ -3,27 +3,39 @@
 #include <string.h>
 
 int cmp_count = 0; 	//纪录比较次数
+int found[100];	//记录匹配成功的起始位置
+
 //T为文本串，P为模式串
+/*
+ * 蛮力算法的另一种形式，整体从左向右匹配，但每一次具体匹配的过程中都是从模式串的后端向前匹配。
+ * 函数返回匹配成功的次数，匹配失败返回0
+ */
 int bfp(char *T, char *P){
-	int i;		//遍历P串
-	int j = 0;	//遍历T串
+	int i, j;		//i遍历P串，j遍历T串
+	int ret = 0;
 	int tLen = strlen(T);
-	int pLen = strlen(P);
-	while(j <= tLen - pLen){
-		i = pLen - 1;
-		while(i >= 0 && *(P + i) == *(T + j + i)){
+	int m = strlen(P);
+	
+	j = 0;
+	while(j <= tLen - m){
+		for(i = m -1; i >= 0; --i){
 			cmp_count++;
-			--i;
+			if(P[i] != T[j+i]){
+				break;
+			}
 		}
-		if(i == -1){
-			return j;
+
+		if(i == -1){	//匹配成功一次
+			found[ret++] = j;
+			j += m;
+		}else{
+			++j;
 		}
-		j++;
 	}
-	return -1;
+	return ret;
 }
 int main(){
-	char *text = "hllolleolll hlleolleollellso how are yoheloeolleolllou? fine, thelleolleollllohanks! lleolleolland yhello?";
+	char *text = "hllolleolll hlleolleollellso hhelloow are yoheloeolleolllou? fine, thelleolleollllohanks! lleolleolland yhello?";
 	char *pattern = "hello";
 	//char *text = "hello hello how are yohellu? fine, thellohanks! and yellou?llllllllllllllllllllllllllllll";
 	//char *pattern = "l";
@@ -31,12 +43,15 @@ int main(){
 	
 	//打印，文本串从找到的起始位置到结束
 	int ret = bfp(text, pattern);
-	if(ret < 0){
+	if(ret <= 0){
 		printf("not found:%s...\n", pattern);
 		return 0;
 	}
-	printf("compare %d times, ", cmp_count);
-	printf("found starts @[%d]:%s\n", ret, (text+ret));
-	
+	printf("found %d times.\n", ret);
+	int i = 0;
+	for(; i < ret; ++i){
+		printf("found starts @[%d]:%s\n", found[i], (text+found[i]));	
+	}
+	printf("total compare %d times.\n", cmp_count);
 	return 0;
 }

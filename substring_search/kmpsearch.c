@@ -5,37 +5,54 @@
 
 int next[100];
 int cmp_count = 0;	//统计比较次数
-//T为文本串，P为模式串，返回匹配成功的起始位置在T中的下标，匹配失败时返回-1
+int found[100]; 	//记录匹配成功的起始位置
+
+//T为文本串，P为模式串
+/*
+ *1)kmp算法利用了匹配过的信息，重新利用已经匹配过的串，每次从左向右匹配，如果不匹配就令j = next[j];
+ *2)next[j]的含义是，如果当前字符不匹配时，就从模式串中查找已经匹配过的坏字符前面几个字符与开头的几个字符相同，
+ *		这样就可以用开头的几个字符与坏字符前面的几个字符对应，从而可以后面的继续匹配。
+ *3)计算next数组时，next[i] = max{k : P[0,...,k-1] == P[i-k,..., i-1]}， next[0]=-1
+ *4)计算next数组的算法是：初始化next[0]=-1， 然后递归求解, 由next[j]=k，求next[j+1]
+ *	a)若	P[j] == P[k]，则next[j+1] = next[j]+1 = k+1;
+ *	b)若P[j] != P[k], 则令k=next[k]，依次继续向前找，直到P[j] == P[k]或者next[k]==-1,然后再next[j+1] = next[j]+1 = k+1;
+ *5)优化过的计算next数组，详见过程分析
+ */
+//返回匹配成功的次数，匹配失败时返回0
 int kmpsearch(char *T, char *P){
-	int i = 0, j = 0;
+	int i, j;	//i遍历P，j遍历T
 	int tLen = strlen(T);
-	int pLen = strlen(P);
+	int m = strlen(P);
+	int ret = 0;
 
-	while(i < tLen && j < pLen){		//开始匹配
-		if(j == -1 || T[i] == P[j]){	//j==-1表示重新匹配模式串的开始；T[i]==P[j]表示匹配成功，然后匹配下一个
+	j = 0;
+	while(j <= tLen - m){	//遍历文本串T
+		for(i = 0; i < m; i++){	//遍历模式串P
 			cmp_count++;
-			++i;	//i始终向前移动
-			++j;	//如果匹配成功则模式串向前走，否则就是j==-1,往前走一步就是令j=0;
-		}else{
-			j = next[j];	//j向前跳到上一个匹配的位置
+			if(T[j+i] != P[i]){	//不匹配
+				break;
+			}
 		}
-	}//end of while
-
-	if(j == pLen){
-		return i - j;
-	}else{
-		return -1;
+		
+		if(i == m){		//匹配成功
+			found[ret++] = j;
+			j += m;		//跳一个模式串长度
+		}else{
+			j += i - next[i];	//跳到下一个位置
+		}	
 	}
+	
+	return ret;
 }
 
 //计算模式串的next数组
 void GetNext(char *P, int next[]){
-	int pLen = strlen(P);
+	int m = strlen(P);
 	next[0] = -1;	//初始化next[0]为-1
 	int k = -1;		//next[j] = k
 	int j = 0;		//遍历模式串
 
-	while(j < pLen - 1){	//第一个已经初始化，而且是先自加再赋值
+	while(j < m - 1){	//第一个已经初始化，而且是先自加再赋值
 		if(k == -1 || P[j] == P[k]){	//k==-1表示递归到了next[0]; P[j]==p[k]表示在之前的基础上又匹配成功了一个
 			++j;
 			++k;
@@ -45,14 +62,15 @@ void GetNext(char *P, int next[]){
 		}
 	}//end of while
 }
+
 //优化过的计算模式串的next数组
 void GetNextOP(char *P, int next[]){
-	int pLen = strlen(P);
+	int m = strlen(P);
 	next[0] = -1;	//初始化next[0]为-1
 	int k = -1;		//next[j] = k
 	int j = 0;		//遍历模式串
 
-	while(j < pLen - 1){	//第一个已经初始化，而且是先自加再赋值
+	while(j < m - 1){	//第一个已经初始化，而且是先自加再赋值
 		if(k == -1 || P[j] == P[k]){	//k==-1表示递归到了next[0]; P[j]==p[k]表示在之前的基础上又匹配成功了一个
 			++j;
 			++k;
@@ -70,8 +88,8 @@ void GetNextOP(char *P, int next[]){
 
 //测试
 int main(){
-	char *text = "helllolleolll hlleolleollellso how are yohelleolleolllou? fine, thelleolleollllohanks! lleolleolland yhello?";
-	char *pattern = "lleolleoll";
+	char *text = "hllolleolll hlleolleollellso hhelloow are yoheloeolleolllou? fine, thelleolleollllohanks! lleolleolland yhello?";
+	char *pattern = "hello";
 	//char *text = "hello hello how are yohellu? fine, thellohanks! and yellou?llllllllllllllllllllllllllllll";
 	//char *pattern = "l";
 	//GetNext(pattern, next);
@@ -79,23 +97,26 @@ int main(){
 	//求模式串的next数组
 	GetNextOP(pattern, next);
 	int i = 0;
-	int pLen = strlen(pattern);
-	
+		
 	//打印next数组
+/*	int m = strlen(pattern);
 	printf("next:");
-	for(; i < pLen; i++){
+	for(; i < m; i++){
 		printf("%d ", next[i]);
 	}
 	printf("\ntext:%s\npattern:%s\n", text, pattern);
-	
+*/	
 	//打印，文本串从找到的起始位置到结束
 	int ret = kmpsearch(text, pattern);
-	printf("compare %d times, ", ret);
-	if(ret < 0){
+	if(ret <= 0){
 		printf("not found %s...\n", pattern);
 		return 0;
 	}
-	printf("found:%s\n", (text+ret));
+	printf("found %d times.\n", ret);
+	for(; i< ret; i++){
+		printf("found starts @[%d]:%s\n", found[i], (text+found[i]));
+	}
+	printf("total compare %d times.\n", cmp_count);
 	
 	return 0;
 }

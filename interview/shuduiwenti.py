@@ -30,7 +30,7 @@ x = [2, 19, 20, 3, 4, 100, 50, 39, 23, 54]
 y = [4, 8, 3, 18, 40, 288, 42, 12, 45]
 ret = []
 y.sort()
-for i in x:
+for i in x:   
 	mid = len(y)/2
 	low = 0
 	high = len(y) - 1

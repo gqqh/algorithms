@@ -16,8 +16,7 @@ void printArray(int *array, int size){
         printf("%d, ", array[curr]);
     }
     printf("\n");
-}
- //寻找数组中的最大值
+} //寻找数组中的最大值
 int findmax(int *array, int size){
     int max = array[0];
     int curr;

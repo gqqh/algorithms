@@ -74,7 +74,7 @@ static rb_node_t* rb_erase_fixup(rb_node_t *child, rb_node_t *parent, rb_node_t 
  [*参考*](http://blog.csdn.net/v_july_v/article/details/7041827)
 
 ##5、[trie树](trie_tree)(**未完成，待修改**)
-*[先参考官网上的这个](interview/trie_tree1.c)
+*[先参考官网上的这个](interview/trie_tree1.c)   
 *[]
 ##6、[面试题目](interview)
 *[README.md](interview/README.md)

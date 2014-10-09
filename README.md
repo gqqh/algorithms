@@ -1,5 +1,5 @@
 ###Algorithms study
-##1、[container_of](container_of/)  
+####1、[container_of](container_of/)  
 `container_of`是一个宏，定义在[`kernel.h`]中：
 
 ```C
@@ -27,10 +27,10 @@
     `#define offsetof(type, member) ((size_t) &((type *)0)->member)` //就是求成员变量相对于结构体的偏移量  
   `(char *)__mptr - offsetof(type,member)` 就是把指向该成员变量的指针向前后退该成员变量的偏移量，就可以指向该结构体的起始地址，然后再强制转换一下，就ok了。
   
-##2、[list](list/)
+####2、[list](list/)
 使用container_of实现一个双向循环队列。
 
-##3、[rbtree](rbtree/)
+####3、[rbtree](rbtree/)
  红黑树的实现与测试：
 + 1)文件rbtree.h是红黑树的定义与实现的文件
 其中节点格式为：
@@ -66,15 +66,15 @@ static rb_node_t* rb_erase_fixup(rb_node_t *child, rb_node_t *parent, rb_node_t 
 + 2)文件rbtree-test.h是测试程序
 先随即生成100个节点，然后插入并查询，再随即删除30个节点。
 
-##4、[字符串匹配](substring_search/) [**more**](http://www-igm.univ-mlv.fr/~lecroq/string/node1.html)
+####4、[字符串匹配](substring_search/) [**more**](http://www-igm.univ-mlv.fr/~lecroq/string/node1.html)
 * 蛮力方法 [brute_force.c](substring_search/brute_force.c) [*参考*](http://www-igm.univ-mlv.fr/~lecroq/string/node3.html#SECTION0030)
 * kmp算法 [kmpsearch.c](substring_search/kmpsearch.c) [*参考*](http://www-igm.univ-mlv.fr/~lecroq/string/node8.html#SECTION0080)
 * sunday算法 [sunday_search.c](substring_search/sunday_search.c)
 * bm算法[bmsearch.c](substring_search/bmsearch.c)   
  [*参考*](http://blog.csdn.net/v_july_v/article/details/7041827)
 
-##5、[trie树](trie_tree)(**未完成，待修改**)
+####5、[trie树](trie_tree)(**未完成，待修改**)
 *[先参考官网上的这个](interview/trie_tree1.c)   
 *[]
-##6、[面试题目](interview)
+####6、[面试题目](interview)
 *[README.md](interview/README.md)

@@ -6,15 +6,15 @@
 '''
 '''
 #try1 蛮力方案，O(m*n)
-x = [2, 19, 20, 3, 4, 100, 50, 39, 23, 54]
-y = [4, 8, 3, 18, 40, 288, 42, 12, 45]
+x = [2, 1, 19, 20, 3, 4, 100, 50, 39, 23, 54]
+y = [4, 2, 8, 3, 18, 40, 288, 42, 12, 45]
 ret = []
 
 for i in x:
 	for j in y:
 		if i ** j > j ** i:
 			ret.append((i, j))
-print ret
+print len(ret)
 '''
 #try2
 '''
@@ -26,23 +26,39 @@ x、y都是正数，所以：x^y > y^x <==> ylog(x)>xlog(y) <==> log(x)/x > log(
 '''
 
 import math
-x = [2, 19, 20, 3, 4, 100, 50, 39, 23, 54]
-y = [4, 8, 3, 18, 40, 288, 42, 12, 45]
-ret = []
+x = [2, 1, 19, 20, 3, 4, 100, 50, 39, 23, 54]
+y = [4, 2, 8, 3, 18, 40, 288, 42, 12, 45]
+ret = 0
+# 对y进行排序
 y.sort()
+# 统计y[0...4]出现的个数
+no_y = [0, 0, 0, 0, 0]
+for i in y:
+	if i < 5:
+		no_y[i] += 1
+
+# 遍历X数组，对于每一个x，统计其出现个数
 for i in x:   
+	if i == 0:
+		continue
+	if i == 1:
+		ret += no_y[0]
+		continue
 	mid = len(y)/2
 	low = 0
 	high = len(y) - 1
-	dx = math.log(i)/i
 	while low <= high:
-		if dx <= math.log(y[mid])/y[mid]:
+		if i >= y[ mid ]:
 			low = mid + 1
 			mid = (low + high) / 2
 		else:
 			high = high - 1
 			mid = (low + high) / 2
-	for j in y[mid:]:
-		if i ** j > j ** i:
-			ret.append((i, j))
+	ret += len( y[mid + 1:] )
+	if i == 2:
+		ret -= no_y[3] + no_y[4]
+		continue
+	if i == 3:
+		ret += no_y[2]
+		continue
 print ret

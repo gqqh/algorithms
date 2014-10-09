@@ -1,5 +1,5 @@
 ###这个文件夹里面都是一些常见的面试题目  
-##1、[countsort.c](countsort.c)
+####1、[countsort.c](countsort.c)
 ```c
 /*
  *计数排序非常基础，他的主要目的是对整数排序并且会比普通的排序算法性能更好。
@@ -12,18 +12,18 @@
  */
  ```
  
- ##2、[老鼠毒药分析](laoshuduyao.py) [**from**](https://gist.github.com/sing1ee/6137554)   
+####2、[老鼠毒药分析](laoshuduyao.py) [**from**](https://gist.github.com/sing1ee/6137554)   
  ```
  原题:有11瓶酒，只有一瓶有毒。喝酒之后，三天会死，只有三天时间。  
      请问至少需要多少只老鼠，可以找出9瓶没有毒的酒。
  ```
- ##3、[数对问题](shuduiwenti.py) [C++](shuduiwenti.cc)  [**from**](https://gist.github.com/sing1ee/e079b50b4aebdefa9066)
+####3、[数对问题](shuduiwenti.py) [C++](shuduiwenti.cc)  [**from**](https://gist.github.com/sing1ee/e079b50b4aebdefa9066)
  ```
  题目：给定两个数组X和Y，元素都是正数。请找出满足如下条件的数对的数目：
   1、x ^ y > y ^ x, 即x的y次方大于y的x次方
   2、x来自X数组，y来自Y数组
  ```
- ##4、[有趣的色子](fun1.py) [**from**](http://qgc.qq.com/279243335/t/4)  
+####4、[有趣的色子](fun1.py) [**from**](http://qgc.qq.com/279243335/t/4)  
 ```
 有趣的色子，四个六面的色子：
 A:(2, 2, 2, 2, 5, 6)
@@ -35,14 +35,14 @@ D:(1, 2 ,3, 4, 5, 6)
 ```
   注：条件概率。
  
-##5、[25匹赛马问题](horse_race.py) [**from**](http://daiziguizhong.qiniudn.com/article_20140305-18-33-34.html)
+####5、[25匹赛马问题](horse_race.py) [**from**](http://daiziguizhong.qiniudn.com/article_20140305-18-33-34.html)
 ```
 原题:
 想必田忌赛马的故事，大家都耳熟能详。但是，大家知道Goolge的童鞋们是怎么赛马的么？
 不过，首先，大家要先尝试一下：有25匹马，每次只能五匹一起跑，那么最少跑几次，才能确定前三甲呢？
 ```
 
-##6、实现二分查找，和upper_bound()及lower_bound() [**from**](upper_lower_bound.c)
+####6、实现二分查找，和upper_bound()及lower_bound() [**from**](upper_lower_bound.c)
 ```c
 /*
  *主要实现二分查找，及<algorithm>中的upper_bound(),和lower_bound()两个函数

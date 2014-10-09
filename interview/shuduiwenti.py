@@ -52,7 +52,7 @@ for i in x:
 			low = mid + 1
 			mid = (low + high) / 2
 		else:
-			high = high - 1
+			high = mid - 1
 			mid = (low + high) / 2
 	ret += len( y[mid + 1:] )
 	if i == 2:

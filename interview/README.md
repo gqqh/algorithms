@@ -42,7 +42,7 @@ D:(1, 2 ,3, 4, 5, 6)
 不过，首先，大家要先尝试一下：有25匹马，每次只能五匹一起跑，那么最少跑几次，才能确定前三甲呢？
 ```
 
-####6、实现二分查找，和upper_bound()及lower_bound() [**from**](upper_lower_bound.c)
+####6、实现二分查找，和upper_bound()及lower_bound() [**here**](upper_lower_bound.c)
 ```c
 /*
  *主要实现二分查找，及<algorithm>中的upper_bound(),和lower_bound()两个函数

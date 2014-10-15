@@ -38,7 +38,7 @@ for i in y:
 		no_y[i] += 1
 
 # 遍历X数组，对于每一个x，统计其出现个数
-for i in x:   
+for i in x:
 	if i == 0:
 		continue
 	if i == 1:

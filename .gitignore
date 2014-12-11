@@ -3,4 +3,5 @@
 *.exe
 *.out
 *.tags*
+core
 test.*

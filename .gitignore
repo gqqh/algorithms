@@ -3,6 +3,7 @@
 *.exe
 *.out
 *.tags*
+*.pyc
 core
 test.*
 /test/

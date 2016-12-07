@@ -3,13 +3,15 @@
 #include <string.h>
 
 #define MAX_WIDTH 256           //节点可以是所有ASCII码
-#define MAX_WORD_LEN    128     //一个单词最大的长度
+#define MAX_WORD_LEN 128        //一个单词最大的长度
+
 struct trie_node_st{
         int count; //用来标记该孩子节点是否可以形成一个单词，如果可以则非0；标记单词出现的次数
         int pass;  //用来记录该节点有多少个子孙，pass为0则为叶子节点，pass的个数>=child元素的个数
         struct trie_node_st *child[MAX_WIDTH];  //该节点的孩子指针，如果该节点的'a'孩子存在，则child[97]非空。
 };
-struct trie_node_st *tree = {-1, 0, {NULL}};       
+struct trie_node_st tree = {-1, 0, {NULL}};
+
 int insert_node(struct trie_node_st *root, const char *str);  //插入节点
 int lookup_node(struct trie_node_st *root, const char *str);  //查询节点
 int delete_node(struct trie_node_st *root, const char *str);  //删除节点
@@ -29,10 +31,10 @@ int insert_node(struct trie_node_st *root, const char *str){
 
         for(i = 0; ; i++){ //遍历str
                 if(curr->child[ str[i] ] == NULL){      //letter str[i]不存在，则创建
-                        newnode = (struct trie_node_st *)malloc(sizeof(struct trie_node_st));
+                        struct trie_node_st *newnode = (struct trie_node_st *)malloc(sizeof(struct trie_node_st));
                         newnode->count = 0;
                         newnode->pass = 0;
-                        newnode->child = {NULL};
+                        newnode->child = ;
                         curr->child[ str[i] ] = newnode;        //当前节点指向新节点
                 }
                 curr = curr->child[str[i]];

@@ -22,7 +22,7 @@ struct student{
     int age;
 }stu={"zhangsan",'m', 20};
 
-main()
+int main()
 {
     struct student *stu_ptr;    //存储container_of宏的返回值
     int offset;            	//存储offsetof宏的返回值
@@ -46,7 +46,7 @@ sex存放在第20个字节出（从0字节开始）
 减去 offset值 相当于 得到_mptr所在结构体的首地址（即stu的地址）
 然后我们把 该地址 强制转化为 struct student类型即可正常使用了
 */
-    printf("sizeof(struct student):%d\n", sizeof(struct student));
+    printf("sizeof(struct student):%lu\n", sizeof(struct student));
     printf("offsetof stu.sex = %d\n",(int)offsetof(struct student, sex));  
     //offset = (int)(&((struct student *)0)->name);
     printf("offsetof stu.name = %d\n",(int)offsetof(struct student, name));

@@ -520,16 +520,20 @@ void print(rb_node_t* root){
     tail = 0;
     int depth = 1, count = 0;
     queue[tail] = root;
-    tail = (tail ++) % 100;
+    tail = tail % 100;
+    tail ++;
    // printf("here2\n");
     while(head != tail){    //队列不为空就输出
         node = queue[head];
-        head = (head ++) % 100;
+        head = head % 100;
+        head ++;
         if(node != NULL){
             queue[tail] = node->left;
-            tail = (tail ++) % 100;
+            tail = tail % 100;
+            tail ++;
             queue[tail] = node->right;
-            tail = (tail ++) % 100;
+            tail = tail % 100;
+            tail ++;
             printf("%d(%c) ", node->key, node->color ? 'B' : 'R');
             count ++;
             if(count == pow2(depth) - 1){

@@ -41,7 +41,8 @@ int k_th2(int S[], int n, int k){
  */
 int _k_th3(int S[], int b, int e, int k){
 	int n = e - b + 1;
-	if(e < b || e-b+1 < k)	return;
+	if(e < b || e-b+1 < k)	
+        return -1;
 	/*随机从S[b, ..., e]中找一个元素作为比较值*/
 	int t = random() % n + b;
 	int p = S[t];
@@ -208,12 +209,14 @@ int main(int argc, char const *argv[])
 	int S1[] = {2, 3, 4, 1, 3, 9, 8, 2, 10, 299, 323, 123, -12, 23, -434, 67};
 	int n = sizeof(S1) / sizeof(S1[0]);
 	int k = 0;
-	while(k < 1 || k > n){
-		printf("input k in [1, %d]:", n);
-		scanf("%d", &k);
-		if(k == -1)
-			return;
-	}
+    printf("input k in [1, %d]:", n);
+	scanf("%d", &k);
+    printf("%d\n", k);
+	if(k <= 0 || k > n){
+        printf("error k = %d.\n", k);
+        break;
+    }
+	
 	//k_th1
 	printf("k_th1:%d-th num is :%d\n", k, k_th1(S1, n, k));
 	//k_th2

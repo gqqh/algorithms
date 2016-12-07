@@ -1,7 +1,7 @@
 //测试skip list
 #include "skip_list.h"
 
-#define sample_size 60000
+#define sample_size 600
 
 //测试
 int main() {
